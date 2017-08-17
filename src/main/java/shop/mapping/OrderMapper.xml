@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="shop.dao.OrderMapper">
+	<resultMap id="BaseResultMap" type="shop.model.Order">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="userId" property="userid" jdbcType="INTEGER" />
+		<result column="total" property="total" jdbcType="DOUBLE" />
+		<result column="addressId" property="addressid" jdbcType="INTEGER" />
+		<result column="remarks" property="remarks" jdbcType="VARCHAR" />
+		<result column="time" property="time" jdbcType="DATE" />
+		<result column="state" property="state" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, userId, total, addressId, remarks, time, state
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from jd_order
+		where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		jd_order
+		where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="shop.model.Order">
+		insert into jd_order (id,
+		userId, total,
+		addressId, remarks, time,
+		state)
+		values
+		(#{id,jdbcType=VARCHAR}, #{userid,jdbcType=INTEGER},
+		#{total,jdbcType=DOUBLE},
+		#{addressid,jdbcType=INTEGER},
+		#{remarks,jdbcType=VARCHAR}, #{time,jdbcType=DATE},
+		#{state,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="shop.model.Order">
+		insert into jd_order
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userid != null">
+				userId,
+			</if>
+			<if test="total != null">
+				total,
+			</if>
+			<if test="addressid != null">
+				addressId,
+			</if>
+			<if test="remarks != null">
+				remarks,
+			</if>
+			<if test="time != null">
+				time,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="userid != null">
+				#{userid,jdbcType=INTEGER},
+			</if>
+			<if test="total != null">
+				#{total,jdbcType=DOUBLE},
+			</if>
+			<if test="addressid != null">
+				#{addressid,jdbcType=INTEGER},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				#{time,jdbcType=DATE},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="shop.model.Order">
+		update jd_order
+		<set>
+			<if test="userid != null">
+				userId = #{userid,jdbcType=INTEGER},
+			</if>
+			<if test="total != null">
+				total = #{total,jdbcType=DOUBLE},
+			</if>
+			<if test="addressid != null">
+				addressId = #{addressid,jdbcType=INTEGER},
+			</if>
+			<if test="remarks != null">
+				remarks = #{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="time != null">
+				time = #{time,jdbcType=DATE},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="shop.model.Order">
+		update jd_order
+		set userId = #{userid,jdbcType=INTEGER},
+		total =
+		#{total,jdbcType=DOUBLE},
+		addressId = #{addressid,jdbcType=INTEGER},
+		remarks = #{remarks,jdbcType=VARCHAR},
+		time = #{time,jdbcType=DATE},
+		state = #{state,jdbcType=INTEGER}
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<resultMap type="shop.model.PageBean" id="PageBeanResultMap">
+		<result column="count" property="count" jdbcType="INTEGER" />
+		<collection property="data" ofType="shop.model.Order">
+			<id  column="id" property="id" jdbcType="VARCHAR" />
+			<result column="total" property="total" jdbcType="DOUBLE" />
+			<result column="addressId" property="addressid" jdbcType="INTEGER" />
+			<result column="remarks" property="remarks" jdbcType="VARCHAR" />
+			<result column="time" property="time" jdbcType="DATE" />
+			<result column="state" property="state" jdbcType="INTEGER" />
+			<result column="userId" property="userid" jdbcType="INTEGER" />
+			 <collection property="itemList" 
+				ofType="shop.model.Orderitem">
+				<id column="orderitemid" property="id" jdbcType="INTEGER" />
+				<result column="goodsId" property="goodsid" jdbcType="INTEGER" />
+				<result column="goodsName" property="goodsname" jdbcType="VARCHAR" />
+				<result column="proPic" property="propic" jdbcType="VARCHAR" />
+				<result column="goodsPrice" property="goodsprice" jdbcType="DOUBLE" />
+				<result column="sum" property="sum" jdbcType="INTEGER" />
+				<result column="sumTotal" property="sumtotal" jdbcType="DOUBLE" />
+				<result column="orderId" property="orderid" jdbcType="VARCHAR" />
+			</collection> 
+		</collection>
+	</resultMap>
+	<select id="selectOrderPage" resultMap="PageBeanResultMap"
+		parameterType="java.util.Map">
+		select (select count(*) count from jd_order where
+		userId=#{userid}
+		<if test="type==1">
+
+		</if>
+		<if test="type==2">
+			and state=1
+		</if>
+		<if test="type==3">
+			and state=6
+		</if>
+		<if test="type==4">
+			and state=3
+		</if>
+		)as count,jd_orderitem.id orderitemid,
+		jd_orderitem.goodsId goodsId,
+		jd_orderitem.goodsName goodsName,
+		jd_orderitem.proPic proPic,
+		jd_orderitem.goodsPrice goodsPrice,
+		jd_orderitem.sum sum,
+		jd_orderitem.sumTotal sumTotal,
+		jd_orderitem.orderId OrderId,
+		jd_order.id id,
+		jd_order.userId userId,
+		jd_order.total total,
+		jd_order.addressId addressId,
+		jd_order.remarks remarks,
+		jd_order.time
+		time,
+		jd_order.state state
+		from jd_orderitem JOIN jd_order ON
+		jd_orderitem.orderId = jd_order.id where userId=#{userid}
+		<if test="type==1">
+
+		</if>
+		<if test="type==2">
+			and state=1
+		</if>
+		<if test="type==3">
+			and state=6
+		</if>
+		<if test="type==4">
+			and state=3
+		</if>
+		order by time desc limit #{start},#{pagesize}
+	</select>
+</mapper>

@@ -1,0 +1,196 @@
+.dlk{
+	width: 600px;
+	height: 390px;
+	background: #fff;
+	position: fixed;
+	display: none;
+	z-index: 99998;
+}
+#zccg{
+	width:200px;
+	height:50px;
+	background: #E0DEF8;
+	position: fixed;
+	display:none;
+	z-index: 99999;
+}
+#dlcg{
+	width:200px;
+	height:50px;
+	background: #E0DEF8;
+	position: fixed;
+	display:none;
+	z-index: 99999;
+}
+#qxdl{
+	width:200px;
+	height:50px;
+	background: #E0DEF8;
+	position: fixed;
+	display:none;
+	z-index: 99999;
+}
+#zhcg{
+	width:200px;
+	height:50px;
+	background: #E0DEF8;
+	position: fixed;
+	display:none;
+	z-index: 99999;
+}
+.zck{
+	width: 600px;
+	height: 443px;
+	background: #fff;
+	position: fixed;
+	display: none;
+	z-index: 99998;
+}
+.dlk h3 {
+	height: 40px;
+	background: #ff9900;
+	color: #fff;
+	line-height: 40px;
+	text-indent: 20px;
+	cursor: move; /*移动形状*/
+}
+.zck h3 {
+	height: 40px;
+	background: #ff9900;
+	color: #fff;
+	line-height: 40px;
+	text-indent: 20px;
+	cursor: move; /*移动形状*/
+}
+
+.dlk h3 .colose {
+	display: block; /*把行内元素转变为块元素*/
+	width: 17px;
+	height: 17px;
+	background: url('../images/close.png');
+	float: right; /*右浮动*/
+	margin-right: 10px;
+	margin-top: 10px;
+}
+.zck h3 .colose {
+	display: block; /*把行内元素转变为块元素*/
+	width: 17px;
+	height: 17px;
+	background: url('../images/close.png');
+	float: right; /*右浮动*/
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+.dlk h3 .colose:hover {
+	cursor: pointer;
+	background: url('../images/close.png') center bottom;
+}
+.zck h3 .colose:hover {
+	cursor: pointer;
+	background: url('../images/close.png') center bottom;
+}
+.dlk .txt {
+	margin-top: 10px;
+	padding: 0 20px; /*上下 左右*/
+	font-size: 12px;
+	color: #666;
+}
+.zck .txt {
+	margin-top: 10px;
+	padding: 0 20px; /*上下 左右*/
+	font-size: 12px;
+	color: #666;
+}
+.dlk form{
+	position: relative;
+}
+
+.zck form{
+	position: relative;
+}
+.dlk form p {
+	width: 300px;
+	height: 35px;
+	line-height: 35px;
+	margin: 20px auto 0; /*上 左右 下*/
+}
+.zck form p {
+	width: 300px;
+	height: 35px;
+	line-height: 35px;
+	margin: 20px auto 0; /*上 左右 下*/
+}
+.dlk form p input{
+	width: 260px;
+	height: 35px;
+	margin-left: 5px;
+	border: 1px solid #ddd;
+	float: right;
+}
+.zck form p input{
+	width: 230px;
+	height: 35px;
+	margin-left: 5px;
+	border: 1px solid #ddd;
+	float: right;
+}
+#yzm{
+	width: 100px;
+	height: 35px;
+	margin-left: 5px;
+	border: 1px solid #ddd;
+	position: absolute;
+	right:300px;
+}
+#yzm1{
+	width: 100px;
+	height: 35px;
+	margin-left: 5px;
+	border: 1px solid #ddd;
+	position: absolute;
+	right:300px;
+}
+#a1{
+	position: absolute;
+	right:150px;
+}
+#a2{
+	position: absolute;
+	right:150px;
+}
+#CreateCheckCode{
+	position: absolute;
+	right:200px;
+}
+#CreateCheckCode1{
+	position: absolute;
+	right:200px;
+}
+.dlk form p span{
+	position: absolute;
+	right:60px;
+}
+.zck form p span{
+	position: absolute;
+	right:60px;
+}
+.dlk form p input.sub {
+	width:263px;
+	height:40px;
+	position: absolute;
+	right:172px;
+	border: none;
+	background: url('../images/ljdl.jpg');
+}
+.sub:hover{
+	cursor: pointer;
+}
+.zck form p input.sub {
+	width:263px;
+	height:40px;
+	position: absolute;
+	right:172px;
+	border: none;
+	background: url('../images/ljzc.jpg');
+}

@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="shop.dao.GoodsMapper">
+	<resultMap id="BaseResultMap" type="shop.model.Goods">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="price" property="price" jdbcType="DOUBLE" />
+		<result column="proPic" property="propic" jdbcType="VARCHAR" />
+		<result column="brand" property="brand" jdbcType="VARCHAR" />
+		<result column="sales" property="sales" jdbcType="INTEGER" />
+		<result column="views" property="views" jdbcType="INTEGER" />
+		<result column="stock" property="stock" jdbcType="INTEGER" />
+		<result column="contents" property="contents" jdbcType="VARCHAR" />
+		<result column="bigTypeId" property="bigtypeid" jdbcType="INTEGER" />
+		<result column="state" property="state" jdbcType="VARCHAR" />
+		<result column="shopid" property="shopid" jdbcType="INTEGER" />
+		<result column="smallTypeId" property="smalltypeid" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, name, price, proPic, brand, sales, views, stock, contents, bigTypeId,
+		state,
+		shopid, smallTypeId
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from jd_goods
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from jd_goods
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="shop.model.Goods">
+		insert into jd_goods (id, name, price,
+		proPic, brand, sales,
+		views, stock, contents,
+		bigTypeId, state, shopid,
+		smallTypeId)
+		values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{price,jdbcType=DOUBLE},
+		#{propic,jdbcType=VARCHAR}, #{brand,jdbcType=VARCHAR}, #{sales,jdbcType=INTEGER},
+		#{views,jdbcType=INTEGER}, #{stock,jdbcType=INTEGER},
+		#{contents,jdbcType=VARCHAR},
+		#{bigtypeid,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, #{shopid,jdbcType=INTEGER},
+		#{smalltypeid,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="shop.model.Goods">
+		insert into jd_goods
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="propic != null">
+				proPic,
+			</if>
+			<if test="brand != null">
+				brand,
+			</if>
+			<if test="sales != null">
+				sales,
+			</if>
+			<if test="views != null">
+				views,
+			</if>
+			<if test="stock != null">
+				stock,
+			</if>
+			<if test="contents != null">
+				contents,
+			</if>
+			<if test="bigtypeid != null">
+				bigTypeId,
+			</if>
+			<if test="state != null">
+				state,
+			</if>
+			<if test="shopid != null">
+				shopid,
+			</if>
+			<if test="smalltypeid != null">
+				smallTypeId,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				#{price,jdbcType=DOUBLE},
+			</if>
+			<if test="propic != null">
+				#{propic,jdbcType=VARCHAR},
+			</if>
+			<if test="brand != null">
+				#{brand,jdbcType=VARCHAR},
+			</if>
+			<if test="sales != null">
+				#{sales,jdbcType=INTEGER},
+			</if>
+			<if test="views != null">
+				#{views,jdbcType=INTEGER},
+			</if>
+			<if test="stock != null">
+				#{stock,jdbcType=INTEGER},
+			</if>
+			<if test="contents != null">
+				#{contents,jdbcType=VARCHAR},
+			</if>
+			<if test="bigtypeid != null">
+				#{bigtypeid,jdbcType=INTEGER},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=VARCHAR},
+			</if>
+			<if test="shopid != null">
+				#{shopid,jdbcType=INTEGER},
+			</if>
+			<if test="smalltypeid != null">
+				#{smalltypeid,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="shop.model.Goods">
+		update jd_goods
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="price != null">
+				price = #{price,jdbcType=DOUBLE},
+			</if>
+			<if test="propic != null">
+				proPic = #{propic,jdbcType=VARCHAR},
+			</if>
+			<if test="brand != null">
+				brand = #{brand,jdbcType=VARCHAR},
+			</if>
+			<if test="sales != null">
+				sales = #{sales,jdbcType=INTEGER},
+			</if>
+			<if test="views != null">
+				views = #{views,jdbcType=INTEGER},
+			</if>
+			<if test="stock != null">
+				stock = #{stock,jdbcType=INTEGER},
+			</if>
+			<if test="contents != null">
+				contents = #{contents,jdbcType=VARCHAR},
+			</if>
+			<if test="bigtypeid != null">
+				bigTypeId = #{bigtypeid,jdbcType=INTEGER},
+			</if>
+			<if test="state != null">
+				state = #{state,jdbcType=VARCHAR},
+			</if>
+			<if test="shopid != null">
+				shopid = #{shopid,jdbcType=INTEGER},
+			</if>
+			<if test="smalltypeid != null">
+				smallTypeId = #{smalltypeid,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="shop.model.Goods">
+		update jd_goods
+		set name = #{name,jdbcType=VARCHAR},
+		price = #{price,jdbcType=DOUBLE},
+		proPic = #{propic,jdbcType=VARCHAR},
+		brand = #{brand,jdbcType=VARCHAR},
+		sales = #{sales,jdbcType=INTEGER},
+		views = #{views,jdbcType=INTEGER},
+		stock = #{stock,jdbcType=INTEGER},
+		contents = #{contents,jdbcType=VARCHAR},
+		bigTypeId = #{bigtypeid,jdbcType=INTEGER},
+		state = #{state,jdbcType=VARCHAR},
+		shopid = #{shopid,jdbcType=INTEGER},
+		smallTypeId = #{smalltypeid,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectToptenGoods" resultType="shop.model.Goods"
+		parameterType="java.lang.Integer">
+		select id,name,price,proPic from jd_goods where bigTypeId=#{bigtypeid} order
+		by id desc limit 0,10
+	</select>
+	<select id="selectTopsixGoods" resultType="shop.model.Goods"
+		parameterType="java.lang.Integer">
+		select id,name,price,proPic from jd_goods where bigTypeId=#{bigTypeid} order by sales
+		desc limit 0,6
+	</select>
+	<select id="selectSalesTopfiveGoods" resultType="shop.model.Goods">
+		select id,name,price,proPic from jd_goods order by sales desc limit 0,5
+	</select>
+	<resultMap type="shop.model.PageBean" id="PageBeanResultMap">
+		<result column="count" property="count" jdbcType="INTEGER" />
+		<collection property="data" ofType="shop.model.Goods">
+			<id column="id" property="id" jdbcType="INTEGER" />
+			<result column="name" property="name" jdbcType="VARCHAR" />
+			<result column="price" property="price" jdbcType="DOUBLE" />
+			<result column="proPic" property="propic" jdbcType="VARCHAR" />
+		</collection>
+	</resultMap>
+	
+	<select id="selectGoodsPage" resultMap="PageBeanResultMap" parameterType="java.util.Map">
+		select 
+		<if test="name!=null">
+			(select count(*) count from jd_goods where name like #{name})
+		</if>
+		<if test="bid!=null">
+			(select count(*) count from jd_goods where bigTypeId =#{bid})
+		</if>
+		<if test="sid!=null">
+			(select count(*) count from jd_goods where smallTypeId =#{sid})
+		</if>
+		as count,id,name,price,proPic from jd_goods where
+		<if test="name!=null">
+			name like #{name}
+		</if>
+		<if test="bid!=null">
+			bigTypeId =#{bid}
+		</if>
+		<if test="sid!=null">
+			smallTypeId =#{sid}
+		</if>
+		order by 
+		<if test="order==1">
+			views	
+		</if>
+		<if test="order==2">
+			id	
+		</if>
+		<if test="order==3">
+			price	
+		</if>
+		<if test="order==4">
+			sales	
+		</if>
+		desc limit #{start},#{pagesize}
+	</select>
+	
+</mapper>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="shop.dao.OrderitemMapper" >
+  <resultMap id="BaseResultMap" type="shop.model.Orderitem" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goodsId" property="goodsid" jdbcType="INTEGER" />
+    <result column="goodsName" property="goodsname" jdbcType="VARCHAR" />
+    <result column="proPic" property="propic" jdbcType="VARCHAR" />
+    <result column="goodsPrice" property="goodsprice" jdbcType="DOUBLE" />
+    <result column="sum" property="sum" jdbcType="INTEGER" />
+    <result column="sumTotal" property="sumtotal" jdbcType="DOUBLE" />
+    <result column="orderId" property="orderid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, goodsId, goodsName, proPic, goodsPrice, sum, sumTotal, orderId
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from jd_orderitem
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from jd_orderitem
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="shop.model.Orderitem" >
+    insert into jd_orderitem (id, goodsId, goodsName, 
+      proPic, goodsPrice, sum, 
+      sumTotal, orderId)
+    values (#{id,jdbcType=INTEGER}, #{goodsid,jdbcType=INTEGER}, #{goodsname,jdbcType=VARCHAR}, 
+      #{propic,jdbcType=VARCHAR}, #{goodsprice,jdbcType=DOUBLE}, #{sum,jdbcType=INTEGER}, 
+      #{sumtotal,jdbcType=DOUBLE}, #{orderid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="shop.model.Orderitem" >
+    insert into jd_orderitem
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsid != null" >
+        goodsId,
+      </if>
+      <if test="goodsname != null" >
+        goodsName,
+      </if>
+      <if test="propic != null" >
+        proPic,
+      </if>
+      <if test="goodsprice != null" >
+        goodsPrice,
+      </if>
+      <if test="sum != null" >
+        sum,
+      </if>
+      <if test="sumtotal != null" >
+        sumTotal,
+      </if>
+      <if test="orderid != null" >
+        orderId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsid != null" >
+        #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsname != null" >
+        #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="propic != null" >
+        #{propic,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsprice != null" >
+        #{goodsprice,jdbcType=DOUBLE},
+      </if>
+      <if test="sum != null" >
+        #{sum,jdbcType=INTEGER},
+      </if>
+      <if test="sumtotal != null" >
+        #{sumtotal,jdbcType=DOUBLE},
+      </if>
+      <if test="orderid != null" >
+        #{orderid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="shop.model.Orderitem" >
+    update jd_orderitem
+    <set >
+      <if test="goodsid != null" >
+        goodsId = #{goodsid,jdbcType=INTEGER},
+      </if>
+      <if test="goodsname != null" >
+        goodsName = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="propic != null" >
+        proPic = #{propic,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsprice != null" >
+        goodsPrice = #{goodsprice,jdbcType=DOUBLE},
+      </if>
+      <if test="sum != null" >
+        sum = #{sum,jdbcType=INTEGER},
+      </if>
+      <if test="sumtotal != null" >
+        sumTotal = #{sumtotal,jdbcType=DOUBLE},
+      </if>
+      <if test="orderid != null" >
+        orderId = #{orderid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="shop.model.Orderitem" >
+    update jd_orderitem
+    set goodsId = #{goodsid,jdbcType=INTEGER},
+      goodsName = #{goodsname,jdbcType=VARCHAR},
+      proPic = #{propic,jdbcType=VARCHAR},
+      goodsPrice = #{goodsprice,jdbcType=DOUBLE},
+      sum = #{sum,jdbcType=INTEGER},
+      sumTotal = #{sumtotal,jdbcType=DOUBLE},
+      orderId = #{orderid,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectOrderGoodsByOrderId" resultType="shop.model.Orderitem" parameterType="java.lang.String" >
+    select 
+    *
+    from jd_orderitem
+    where orderid = #{orderid}
+  </select>
+  <delete id="deleteGeneralOrder" parameterType="java.lang.String" >
+    delete from jd_orderitem
+    where orderId = #{orderid}
+  </delete>
+  
+</mapper>

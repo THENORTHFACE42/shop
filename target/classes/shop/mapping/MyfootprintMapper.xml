@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="shop.dao.MyfootprintMapper">
+	<resultMap id="BaseResultMap" type="shop.model.Myfootprint">
+		<id column="id" jdbcType="INTEGER" property="id" />
+		<result column="userId" jdbcType="INTEGER" property="userid" />
+		<result column="goodsId" jdbcType="INTEGER" property="goodsid" />
+		<result column="goodsName" jdbcType="VARCHAR" property="goodsname" />
+		<result column="goodsProPic" jdbcType="VARCHAR" property="goodspropic" />
+		<result column="goodsPrice" jdbcType="DOUBLE" property="goodsprice" />
+		<result column="time" jdbcType="DATE" property="time" />
+		<result column="shopid" jdbcType="INTEGER" property="shopid" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, userId, goodsId, goodsName, goodsProPic, goodsPrice, time, shopid
+	</sql>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from jd_myfootprint
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from jd_myfootprint
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="shop.model.Myfootprint">
+		insert into jd_myfootprint (id, userId, goodsId,
+		goodsName, goodsProPic, goodsPrice,
+		time, shopid)
+		values (#{id,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER},
+		#{goodsid,jdbcType=INTEGER},
+		#{goodsname,jdbcType=VARCHAR}, #{goodspropic,jdbcType=VARCHAR}, #{goodsprice,jdbcType=DOUBLE},
+		#{time,jdbcType=DATE}, #{shopid,jdbcType=INTEGER})
+	</insert>
+	<insert id="insertSelective" parameterType="shop.model.Myfootprint">
+		insert into jd_myfootprint
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="userid != null">
+				userId,
+			</if>
+			<if test="goodsid != null">
+				goodsId,
+			</if>
+			<if test="goodsname != null">
+				goodsName,
+			</if>
+			<if test="goodspropic != null">
+				goodsProPic,
+			</if>
+			<if test="goodsprice != null">
+				goodsPrice,
+			</if>
+			<if test="time != null">
+				time,
+			</if>
+			<if test="shopid != null">
+				shopid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="userid != null">
+				#{userid,jdbcType=INTEGER},
+			</if>
+			<if test="goodsid != null">
+				#{goodsid,jdbcType=INTEGER},
+			</if>
+			<if test="goodsname != null">
+				#{goodsname,jdbcType=VARCHAR},
+			</if>
+			<if test="goodspropic != null">
+				#{goodspropic,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsprice != null">
+				#{goodsprice,jdbcType=DOUBLE},
+			</if>
+			<if test="time != null">
+				#{time,jdbcType=DATE},
+			</if>
+			<if test="shopid != null">
+				#{shopid,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="shop.model.Myfootprint">
+		update jd_myfootprint
+		<set>
+			<if test="userid != null">
+				userId = #{userid,jdbcType=INTEGER},
+			</if>
+			<if test="goodsid != null">
+				goodsId = #{goodsid,jdbcType=INTEGER},
+			</if>
+			<if test="goodsname != null">
+				goodsName = #{goodsname,jdbcType=VARCHAR},
+			</if>
+			<if test="goodspropic != null">
+				goodsProPic = #{goodspropic,jdbcType=VARCHAR},
+			</if>
+			<if test="goodsprice != null">
+				goodsPrice = #{goodsprice,jdbcType=DOUBLE},
+			</if>
+			<if test="time != null">
+				time = #{time,jdbcType=DATE},
+			</if>
+			<if test="shopid != null">
+				shopid = #{shopid,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="shop.model.Myfootprint">
+		update jd_myfootprint
+		set userId = #{userid,jdbcType=INTEGER},
+		goodsId = #{goodsid,jdbcType=INTEGER},
+		goodsName = #{goodsname,jdbcType=VARCHAR},
+		goodsProPic = #{goodspropic,jdbcType=VARCHAR},
+		goodsPrice = #{goodsprice,jdbcType=DOUBLE},
+		time = #{time,jdbcType=DATE},
+		shopid = #{shopid,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<select id="selectAllByUserid" parameterType="java.lang.Integer"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from jd_myfootprint
+		where userid = #{userid,jdbcType=INTEGER}
+	</select>
+
+	<delete id="deleteAllfootprintByUserid" parameterType="java.lang.Integer">
+		delete from jd_myfootprint
+		where userid = #{userid,jdbcType=INTEGER}
+	</delete>
+
+	<select id="selectIsExist" parameterType="shop.model.Myfootprint"
+		resultMap="BaseResultMap">
+		SELECT
+		jd_myfootprint.id,
+		jd_myfootprint.userId,
+		jd_myfootprint.goodsId,
+		jd_myfootprint.goodsName,
+		jd_myfootprint.goodsProPic,
+		jd_myfootprint.goodsPrice,
+		jd_myfootprint.time,
+		jd_myfootprint.shopid
+		FROM
+		jd_myfootprint where userId=#{userid} and goodsId= #{goodsid}
+
+	</select>
+</mapper>
